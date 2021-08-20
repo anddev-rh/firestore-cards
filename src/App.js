@@ -5,10 +5,12 @@ import Links from './components/Links'
 import LinkForm from './components/LinkForm';
 
 function App() {
+
+
+
   return (
       <div>
-        <div>
-          <LinkForm />
+        <div>          
           <Links />
         </div>
 
