@@ -21,6 +21,7 @@ export const LinkForm = (props) => {
   const handleSubmit = e => {
     e.preventDefault();
     props.addOrEditLink(values);
+    setValues({...initialStateValues})
   }
 
 
@@ -35,6 +36,7 @@ export const LinkForm = (props) => {
           placeholder="https://someurl.com" 
           name="url"
           onChange={handleInputChange}
+          value={values.url}
         />
       </div>
 
@@ -42,11 +44,11 @@ export const LinkForm = (props) => {
         <div>
           <i class="material-icons">create</i>
         </div>
-        <input type="text" name="name" placeholder="Website name" onChange={handleInputChange} />
+        <input type="text" name="name" placeholder="Website name" onChange={handleInputChange} value={values.name} />
       </div>
 
       <div className="form-group">
-        <textarea name="description" rows="3" onChange={handleInputChange}></textarea>
+        <textarea name="description" rows="3" onChange={handleInputChange} value={values.description} ></textarea>
       </div>
 
       <button>
