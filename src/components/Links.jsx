@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import LinkForm from './LinkForm'
 
+import './styles/Links.css'
+
 import {db} from '../firebase'
 
 
@@ -41,16 +43,16 @@ const Links = () => {
 
 
 
-  return <div>
+  return <div >
     <div>
       <LinkForm addOrEditLink={addOrEditLink}/>
     </div>
     
-    <div>
+    <div className="card-container">
       {links.map(link => (
         <div className="card" key={link.id}>
-          <div>
-            <div>
+          
+            <div className="card-head">
               <h4>{link.name}</h4>
               <i className="material-icons" onClick={() => onDeleteLink(link.id)}>close</i>
             </div>
@@ -59,7 +61,7 @@ const Links = () => {
             <a href={link.url} target="blank">
               Go to website
             </a>
-          </div>
+          
         </div>
       ))}
     </div>
