@@ -1,10 +1,13 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import LinkForm from './LinkForm'
 
 import {db} from '../firebase'
 
 
 const Links = () => {
+
+  const [links, setLinks] = useState([]);
+
 
   const addOrEditLink = async (linkObject) => {
     await db.collection('links').doc().set(linkObject)
@@ -13,9 +16,11 @@ const Links = () => {
 
   const getLinks = async () =>{
     db.collection('links').onSnapshot((querySnapshot) => {
+      const docs = []
       querySnapshot.forEach((doc) => {
-        console.log(doc.data())
-      } )
+        docs.push({...doc.data(), id:doc.id})
+      })
+      setLinks(docs);
     })
   }
   
@@ -29,7 +34,19 @@ const Links = () => {
 
   return <div>
     <LinkForm addOrEditLink={addOrEditLink}/>
-    <h1>LINKS</h1>
+    <div>
+      {links.map(link => (
+        <div>
+          <div>
+            <h4>{link.name}</h4>
+            <p>{link.description}</p>
+            <a href={link.url} target="blank">
+              Go to website
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
   </div>
 }
 
