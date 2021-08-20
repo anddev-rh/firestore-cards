@@ -1,11 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
 
-import './firebase'
+import Links from './components/Links'
+import LinkForm from './components/LinkForm';
 
 function App() {
   return (
-    <h1>Hola cosita buena...</h1>
+      <div>
+        <div>
+          <LinkForm />
+          <Links />
+        </div>
+
+      </div>
+
   );
 }
 
