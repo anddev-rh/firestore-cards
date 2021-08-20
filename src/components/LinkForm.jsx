@@ -29,7 +29,7 @@ export const LinkForm = (props) => {
     <form onSubmit={handleSubmit}>
       <div className="form-group">
         <div>
-          <i class="material-icons">insert_link</i>
+          <i className="material-icons">insert_link</i>
         </div>
         <input 
           type="text"
@@ -42,7 +42,7 @@ export const LinkForm = (props) => {
 
       <div className="form-group">
         <div>
-          <i class="material-icons">create</i>
+          <i className="material-icons">create</i>
         </div>
         <input type="text" name="name" placeholder="Website name" onChange={handleInputChange} value={values.name} />
       </div>

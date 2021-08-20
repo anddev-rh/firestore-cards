@@ -14,6 +14,15 @@ const Links = () => {
     console.log('new task added');
   }
 
+  const onDeleteLink = async id => {
+    if (window.confirm('are you sure you want to delete?')){
+      await db.collection('links').doc(id).delete();
+      console.log('link deleted');
+    }
+    
+  }
+
+
   const getLinks = async () =>{
     db.collection('links').onSnapshot((querySnapshot) => {
       const docs = []
@@ -33,12 +42,19 @@ const Links = () => {
 
 
   return <div>
-    <LinkForm addOrEditLink={addOrEditLink}/>
+    <div>
+      <LinkForm addOrEditLink={addOrEditLink}/>
+    </div>
+    
     <div>
       {links.map(link => (
-        <div>
+        <div className="card" key={link.id}>
           <div>
-            <h4>{link.name}</h4>
+            <div>
+              <h4>{link.name}</h4>
+              <i className="material-icons" onClick={() => onDeleteLink(link.id)}>close</i>
+            </div>
+            
             <p>{link.description}</p>
             <a href={link.url} target="blank">
               Go to website
