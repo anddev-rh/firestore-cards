@@ -14,20 +14,28 @@ const Links = () => {
 
 
   const addOrEditLink = async (linkObject) => {
-    if(currentId === ''){
+    try{
+
+      if(currentId === ''){
       await db.collection('links').doc().set(linkObject)
       toast('New link Added', {
       type: 'success'
       })
-    } else {
-      await db.collection('links').doc(currentId).update(linkObject);
+      } else {
+        await db.collection('links').doc(currentId).update(linkObject);
 
-      toast('Link Updated Succesfully', {
-      type: 'info'
-      })
-      setCurrentId('');
+        toast('Link Updated Succesfully', {
+        type: 'info'
+        })
+        setCurrentId('');
 
+      }
+    } catch (error){
+      console.error(error);
     }
+
+
+
   }
 
   const onDeleteLink = async id => {
